@@ -2,11 +2,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
-const  cors = require('cors')
-const app = express()
+const  cors = require('cors');
+const app = express();
 const port = 3030;
 
-app.use(cors())
+app.use(cors());
 app.use(require('body-parser').urlencoded({ extended: false }));
 
 const reviews_data = JSON.parse(fs.readFileSync("reviews.json", 'utf8'));
@@ -34,7 +34,7 @@ try {
 
 // Express route to home
 app.get('/', async (req, res) => {
-    res.send("Welcome to the Mongoose API")
+    res.send("Welcome to the Mongoose API");
 });
 
 // Express route to fetch all reviews
@@ -64,7 +64,7 @@ try {
     const documents = await Dealerships.find()
     res.json(documents);
 } catch (error) {
-    res.status(500).json({ error: 'Error fetching dealearships'})
+    res.status(500).json({ error: 'Error fetching dealearships'});
 }
 });
 
@@ -72,10 +72,10 @@ try {
 app.get('/fetchDealers/:state', async (req, res) => {
 //Write your code here
 try {
-    const documents = await Dealerships.find({ state: req.params.state})
+    const documents = await Dealerships.find({ state: req.params.state});
     res.json(documents)
 } catch {
-    res.status(500).json({ error: 'Error fetching dealearships by state'})
+    res.status(500).json({ error: 'Error fetching dealearships by state'});
 }
 });
 
@@ -83,17 +83,17 @@ try {
 app.get('/fetchDealer/:id', async (req, res) => {
 //Write your code here
  try {
-    const documents = await Dealerships.findOne({ id: req.params.id})
-    res.json(documents)
+    const documents = await Dealerships.findOne({ id: req.params.id});
+    res.json(documents);
  } catch {
-    res.status(500).json( { error: 'Error fetching Dealer by id'})
+    res.status(500).json( { error: 'Error fetching Dealer by id'});
  }
 });
 
 //Express route to insert review
 app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
   data = JSON.parse(req.body);
-  const documents = await Reviews.find().sort( { id: -1 } )
+  const documents = await Reviews.find().sort( { id: -1 } );
   let new_id = documents[0]['id']+1
 
   const review = new Reviews({
