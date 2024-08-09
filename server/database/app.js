@@ -24,7 +24,7 @@ try {
     Reviews.insertMany(reviews_data.reviews);
   });
   Dealerships.deleteMany({}).then(()=>{
-    Dealerships.insertMany(dealerships_data.dealerships]);
+    Dealerships.insertMany(dealerships_data.dealerships);
   });
   
 } catch (error) {
@@ -61,7 +61,7 @@ app.get('/fetchReviews/dealer/:id', async (req, res) => {
 app.get('/fetchDealers', async (req, res) => {
 //Write your code here
 try {
-    const documents = await Dealerships.find()
+    const documents = await Dealerships.find();
     res.json(documents);
 } catch (error) {
     res.status(500).json({ error: 'Error fetching dealearships'});
@@ -73,7 +73,7 @@ app.get('/fetchDealers/:state', async (req, res) => {
 //Write your code here
 try {
     const documents = await Dealerships.find({ state: req.params.state});
-    res.json(documents)
+    res.json(documents);
 } catch {
     res.status(500).json({ error: 'Error fetching dealearships by state'});
 }
@@ -94,7 +94,7 @@ app.get('/fetchDealer/:id', async (req, res) => {
 app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
   data = JSON.parse(req.body);
   const documents = await Reviews.find().sort( { id: -1 } );
-  let new_id = documents[0].id+1
+  let new_id = documents[0].id+1 ;
 
   const review = new Reviews({
 		"id": new_id,
