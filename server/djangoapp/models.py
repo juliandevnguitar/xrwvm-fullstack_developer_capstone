@@ -3,9 +3,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-
 # Create your models here.
-
 # <HINT> Create a Car Make model `class CarMake(models.Model)`:
 # - Name
 # - Description
@@ -39,9 +37,18 @@ class CarModel(models.Model):
 
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    type = models.CharField(max_length=10, choices=CAR_TYPES, default = 'SUV')
-    year = models.IntegerField(default=2023, validators = [MaxValueValidator(2023),MinValueValidator(2015)])
-    COLORS = [('WHITE', 'white'),('BLACK', 'Black'),('RED', 'red'),('BLUE', 'Blue'),('GREEN', 'Green')]
+    type = models.CharField(max_length=10, choices=CAR_TYPES, default='SUV')
+    year = models.IntegerField(default=2023, validators=[
+        MaxValueValidator(2023),
+        MinValueValidator(2015),
+    ])
+    COLORS = [
+        ('WHITE', 'white'),
+        ('BLACK', 'Black'),
+        ('RED', 'red'),
+        ('BLUE', 'Blue'),
+        ('GREEN', 'Green')
+    ]
     color = models.CharField(max_length=10, choices=COLORS, default='BLACK')
 
     def __str__(self):
