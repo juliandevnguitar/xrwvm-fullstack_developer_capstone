@@ -121,7 +121,6 @@ def initiate():
           "car_make": car_make_instances[4],
           "color": "RED"
         },
-# Add more CarModel instances as needed
     ]
     for data in car_model_data:
         CarModel.objects.create(name=data['name'],
